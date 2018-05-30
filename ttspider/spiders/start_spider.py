@@ -1,20 +1,24 @@
 # -*- coding: utf-8 -*-
+import os
+
 import scrapy
-from scrapy.spiders import Request
 import xlrd
+from scrapy.spiders import Request
 
 
 class StartSpider(scrapy.Spider):
     name = 'start_spider'
     allowed_domains = ['www.csindex.com.cn']
 
-    # 上证50 ：http://www.csindex.com.cn/zh-CN/indices/index-detail/000016
-    # 沪深300：http://www.csindex.com.cn/zh-CN/indices/index-detail/000300
-    # 中证500：http://www.csindex.com.cn/zh-CN/indices/index-detail/000905
+    # 上证50 1-50 超大： http://www.csindex.com.cn/zh-CN/indices/index-detail/000016
+    # 沪深300 1-300 大：http://www.csindex.com.cn/zh-CN/indices/index-detail/000300
+    # 中证500 301-800 中：http://www.csindex.com.cn/zh-CN/indices/index-detail/000905
+    # 中证1000 801-1800 小：http://www.csindex.com.cn/zh-CN/indices/index-detail/000852
     start_urls = [
         'http://www.csindex.com.cn/zh-CN/indices/index-detail/000016',
         'http://www.csindex.com.cn/zh-CN/indices/index-detail/000300',
         'http://www.csindex.com.cn/zh-CN/indices/index-detail/000905',
+        'http://www.csindex.com.cn/zh-CN/indices/index-detail/000852',
     ]
 
     def parse(self, response):
@@ -41,29 +45,31 @@ class StartSpider(scrapy.Spider):
         # table = data.sheet_by_name(u'Sheet1')  # 通过名称获取
 
         # 获取整行和整列的值（数组）
-        print(table.row_values(0))
-        print(table.col_values(0))
+        # print(table.row_values(0))
+        # print(table.col_values(0))
 
         # 获取行数和列数
-        nrows = table.nrows
-        ncols = table.ncols
-        print(nrows)
-        print(ncols)
+        # nrows = table.nrows
+        # ncols = table.ncols
+        # print(nrows)
+        # print(ncols)
 
         # 循环行列表数据
-        for i in range(nrows):
-            print(table.row_values(i))
+        # for i in range(nrows):
+        #     print(table.row_values(i))
 
         # 单元格： 第几行，第几列
-        cell_A1 = table.cell(0, 0).value
-        cell_C4 = table.cell(3, 2).value
-        print(cell_A1)
-        print(cell_C4)
+        # cell_A1 = table.cell(0, 0).value
+        # cell_C4 = table.cell(3, 2).value
+        # print(cell_A1)
+        # print(cell_C4)
 
         # 使用行列索引
-        cell_A1 = table.row(0)[0].value
-        cell_B2 = table.col(1)[0].value
-        print(cell_A1)
-        print(cell_B2)
+        # cell_A1 = table.row(0)[0].value
+        # cell_B2 = table.col(1)[0].value
+        # print(cell_A1)
+        # print(cell_B2)
+
+        os.remove(filename)
 
         pass
