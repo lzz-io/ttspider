@@ -1,7 +1,9 @@
-# 鐢熸垚requirements.txt鏂囦欢
+# 文件编码ANSI
+
+# 生成requirements.txt文件
 # pip freeze > requirements.txt
 
-# 瀹夎requirements.txt渚濊禆
+# 安装requirements.txt依赖
 # pip install -r requirements.txt
 
 # Scrapy==1.5.0
