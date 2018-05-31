@@ -10,13 +10,15 @@ class StartSpider(scrapy.Spider):
     name = 'start_spider'
     allowed_domains = ['www.csindex.com.cn']
 
-    # 上证50 ：http://www.csindex.com.cn/zh-CN/indices/index-detail/000016
-    # 沪深300：http://www.csindex.com.cn/zh-CN/indices/index-detail/000300
-    # 中证500：http://www.csindex.com.cn/zh-CN/indices/index-detail/000905
+    # 上证50 1-50 超大： http://www.csindex.com.cn/zh-CN/indices/index-detail/000016
+    # 沪深300 1-300 大：http://www.csindex.com.cn/zh-CN/indices/index-detail/000300
+    # 中证500 301-800 中：http://www.csindex.com.cn/zh-CN/indices/index-detail/000905
+    # 中证1000 801-1800 小：http://www.csindex.com.cn/zh-CN/indices/index-detail/000852
     start_urls = [
         'http://www.csindex.com.cn/zh-CN/indices/index-detail/000016',
         'http://www.csindex.com.cn/zh-CN/indices/index-detail/000300',
         'http://www.csindex.com.cn/zh-CN/indices/index-detail/000905',
+        'http://www.csindex.com.cn/zh-CN/indices/index-detail/000852',
     ]
 
     def parse(self, response):
@@ -43,8 +45,8 @@ class StartSpider(scrapy.Spider):
         # table = data.sheet_by_name(u'Sheet1')  # 通过名称获取
 
         # 获取整行和整列的值（数组）
-        print(table.row_values(0))
-        print(table.col_values(0))
+        # print(table.row_values(0))
+        # print(table.col_values(0))
 
         # 获取行数和列数
         # nrows = table.nrows
